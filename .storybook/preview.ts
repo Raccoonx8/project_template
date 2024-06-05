@@ -1,11 +1,6 @@
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import type { Preview } from "@storybook/react";
 import { initialize, mswDecorator } from "msw-storybook-addon";
-import {
-    appStateManagerProviderDecorator,
-    reactRouterDomProviderDecorator,
-} from "../src/utils/storybook";
-import { appTheme } from "./../src/logic/domains";
 
 initialize({ onUnhandledRequest: "bypass" });
 
@@ -41,19 +36,12 @@ const preview: Preview = {
                 date: /Date$/i,
             },
         },
-        chakra: {
-            theme: appTheme,
-        },
         viewport: {
             viewports: { ...INITIAL_VIEWPORTS, ...customViewports },
         },
     },
 };
 
-export const decorators = [
-    mswDecorator,
-    reactRouterDomProviderDecorator,
-    appStateManagerProviderDecorator,
-];
+export const decorators = [mswDecorator];
 
 export default preview;
